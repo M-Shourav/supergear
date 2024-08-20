@@ -80,13 +80,15 @@ const Header = () => {
               key={title}
               className={`uppercase hidden md:inline-flex text-sm font-semibold 
                hover:text-whiteText duration-200 group relative overflow-hidden ${
-                 pathName === link ? "text-themeRed" : "text-whiteText/90"
+                 pathName === link
+                   ? "text-themeRed hover:text-themeRed"
+                   : "text-whiteText/90"
                }`}
             >
               {title}
               <span
                 className="absolute bottom-0 left-0 w-full  h-[1px] inline-flex bg-whiteText 
-               transform -translate-x-24 group-hover:translate-x-0 duration-300  "
+               transform -translate-x-[105%] group-hover:translate-x-0 duration-300  "
               />
             </Link>
           ))}
