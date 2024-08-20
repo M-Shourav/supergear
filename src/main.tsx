@@ -7,6 +7,9 @@ import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from "./pages/Profile.tsx";
 import Favorite from "./pages/Favorite.tsx";
 import Cart from "./pages/Cart.tsx";
+import Products from "./pages/Products.tsx";
+import Orders from "./pages/Orders.tsx";
+import Blog from "./pages/Blog.tsx";
 const RouterLayout = () => {
   return (
     <div>
@@ -25,6 +28,9 @@ const router = createBrowserRouter([
       { path: "profile", element: <Profile /> },
       { path: "/favorite", element: <Favorite /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/shop", element: <Products /> },
+      { path: "/orders", element: <Orders /> },
+      { path: "/blog", element: <Blog /> },
     ],
   },
 ]);

@@ -5,8 +5,11 @@ export default {
     extend: {
       colors: {
         darkText: "#000000",
-        skyText: "#3232ff",
+        skyText: "#32bde8",
         themeRed: "#fc0808",
+        whiteText: "#fff",
+        lightText: "#9b9b9b",
+        greenText: "#1d8221",
       },
     },
   },
