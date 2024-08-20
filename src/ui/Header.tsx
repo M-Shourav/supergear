@@ -3,9 +3,16 @@ import { logo } from "../assets";
 import Container from "./Components/Container";
 import { IoClose, IoSearch } from "react-icons/io5";
 import { FiShoppingBag, FiUser } from "react-icons/fi";
-import { FaRegStar } from "react-icons/fa";
+import { FaChevronDown, FaRegStar } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { BottomHeader } from "../constants";
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Transition,
+} from "@headlessui/react";
 
 const Header = () => {
   const [SearchText, setSearchText] = useState("");
@@ -73,7 +80,35 @@ const Header = () => {
       </div>
       <div className="w-full bg-black text-white">
         <Container className="max-w-4xl py-2 flex items-center justify-between gap-5">
-          <p>Select Catagories</p>
+          <Menu>
+            <MenuButton
+              className="inline-flex items-center gap-2 text-sm font-semibold border border-gray-400 rounded-md px-3 py-1.5
+            text-gray-300 hover:text-whiteText hover:border-white duration-200"
+            >
+              Select Catagories <FaChevronDown />
+            </MenuButton>
+            <Transition>
+              <MenuItems
+                anchor="bottom end"
+                className="w-52 origin-top-right rounded-xl border
+                 border-white/5 bg-darkText p-1 text-sm/6 text-gray-300 
+                 transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] 
+                 focus:outline-none hover:text-whiteText z-50"
+              >
+                <MenuItem>
+                  <Link
+                    to={"/"}
+                    className="w-full flex items-center gap-2 px-3 py-2
+                     data-[focus]:bg-white/20 rounded-lg tracking-wide"
+                  >
+                    <p>images</p>
+                    TV & Audio
+                  </Link>
+                </MenuItem>
+              </MenuItems>
+            </Transition>
+          </Menu>
+
           {BottomHeader?.map(({ title, link }) => (
             <Link
               to={link}
