@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { logo } from "../assets";
 import Container from "./Components/Container";
 import { IoClose, IoSearch } from "react-icons/io5";
@@ -14,12 +14,29 @@ import {
   Transition,
 } from "@headlessui/react";
 
+import { categoryProps } from "../../type";
+
 const Header = () => {
   const [SearchText, setSearchText] = useState("");
+  const [categories, setCategories] = useState([]);
   const location = useLocation();
   const pathName = location.pathname;
-  console.log(pathName);
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("http://localhost:8000/categories", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Data fetching error" + response?.statusText);
+      }
+      const data = await response.json();
+      setCategories(data);
+    };
+    fetchData();
+  }, []);
   return (
     <div>
       <div className="h-20">
@@ -95,16 +112,22 @@ const Header = () => {
                  transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] 
                  focus:outline-none hover:text-whiteText z-50"
               >
-                <MenuItem>
-                  <Link
-                    to={"/"}
-                    className="w-full flex items-center gap-2 px-3 py-2
+                {categories?.map((item: categoryProps) => (
+                  <MenuItem key={item?._id}>
+                    <Link
+                      to={`/categories/${item?._base}`}
+                      className="w-full flex items-center gap-2 px-3 py-2
                      data-[focus]:bg-white/20 rounded-lg tracking-wide"
-                  >
-                    <p>images</p>
-                    TV & Audio
-                  </Link>
-                </MenuItem>
+                    >
+                      <img
+                        src={item?.image}
+                        alt="image"
+                        className="w-6 h-6 rounded-md"
+                      />
+                      {item?.name}
+                    </Link>
+                  </MenuItem>
+                ))}
               </MenuItems>
             </Transition>
           </Menu>
