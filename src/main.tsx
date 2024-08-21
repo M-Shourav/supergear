@@ -10,6 +10,8 @@ import Cart from "./pages/Cart.tsx";
 import Products from "./pages/Products.tsx";
 import Orders from "./pages/Orders.tsx";
 import Blog from "./pages/Blog.tsx";
+import NotFound from "./pages/NotFound.tsx";
+import Category from "./pages/Category.tsx";
 const RouterLayout = () => {
   return (
     <div>
@@ -28,9 +30,11 @@ const router = createBrowserRouter([
       { path: "profile", element: <Profile /> },
       { path: "/favorite", element: <Favorite /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/category", element: <Category /> },
       { path: "/shop", element: <Products /> },
       { path: "/orders", element: <Orders /> },
       { path: "/blog", element: <Blog /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);

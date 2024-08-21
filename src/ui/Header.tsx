@@ -115,7 +115,7 @@ const Header = () => {
                 {categories?.map((item: categoryProps) => (
                   <MenuItem key={item?._id}>
                     <Link
-                      to={`/categories/${item?._base}`}
+                      to={`/category/${item?._base}`}
                       className="w-full flex items-center gap-2 px-3 py-2
                      data-[focus]:bg-white/20 rounded-lg tracking-wide"
                     >
